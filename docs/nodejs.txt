@@ -1,0 +1,40 @@
+Git Init
+Git Beschreibung
+Projekt anlegen für WebStorm
+Projektstruktur erstellen
+URL Struktur festlegen
+
+
+Benutzerverwaltung
+	- Frontend Login
+	- Login
+	- Logout
+	- Session/Cookie Management
+	- Austausche von FORM Daten mit "Server"
+
+
+Upload (für eigenen "Stream")
+	- Upload von Bildern mit POST (Puffern,..)
+	- Bilder für Datenbank aufbereiten
+	- Upload Frontend
+
+	
+Datenbank
+	- Struktur bzw. Tabellen
+	- Index, Upload Datum
+	- Wie ablegen?
+	- Datenbank Schnittstelle
+
+	
+Profilseite
+	- Eigene Seite mit meinen Bildern
+	- Eigene Seite mit geteilten Bilder
+	- Gewisse Foto ID Ermitteln
+	- "ID" zu eigenem Profil hinzufügen
+	- Beziehung in DB herstellen
+
+
+Frontend fertigstellen und anpassen
+Erstellung von Tests
+
+Für den Anfang ggf. Dummy Objekte
