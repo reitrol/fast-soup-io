@@ -9,7 +9,34 @@ var express = require('express')
   , http = require('http')
   , path = require('path');
 
-var app = express();
+// Datenbank
+var db = GLOBAL.db = require('mongoose');
+db.connect('mongodb://soupio:rofl@5.9.81.44:27017/soupio');
+
+// Datenbank Modelle
+var Schema = db.Schema;
+GLOBAL.schema = {};
+GLOBAL.schema.userSchema = db.Schema({
+      email         : String
+    , password      : String
+    , stream        : {type: Schema.Types.ObjectId, ref: 'Stream'}
+    , friends       : [{type: Schema.Types.ObjectId, ref: 'User'}]
+    , follows       : [{type: Schema.Types.ObjectId, ref: 'Stream'}]
+});
+GLOBAL.schema.streamSchema = db.Schema({
+      name          : String
+    , entries       : [{
+            image       : Schema.Types.ObjectId,
+            text        : String,
+            created     : {type: Date, default: Date.now},
+            copied_from : { stream: {type: Schema.Types.ObjectId, ref: 'Stream'}, entry: Schema.Types.ObjectId }
+      }]
+});
+GLOBAL.schema.User      = db.model('User', GLOBAL.schema.userSchema);
+GLOBAL.schema.Stream    = db.model('Stream', GLOBAL.schema.streamSchema);
+
+// WebServer
+var app = GLOBAL.app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
