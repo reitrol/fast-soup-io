@@ -11,7 +11,7 @@ var express = require('express')
   , Database = require('./lib/Database')
 ;
 
-GLOBAL.db = Database('mongodb://soupio:rofl@5.9.81.44:27017/soupio');
+GLOBAL.db = new Database('mongodb://soupio:rofl@5.9.81.44:27017/soupio');
 
 // WebServer
 var app = GLOBAL.app = express();
@@ -36,6 +36,9 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+app.get('/i/:id', routes.image);
+app.get('/i', routes.listImages);
+app.get('/i_upload', routes.uploadSun);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
