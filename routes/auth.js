@@ -3,42 +3,29 @@
  */
 
 exports.register = function(req, res){
-
-    console.log("get...");
-
     res.render('register', {title: 'Fast soup-io', errorInfo: ""});
 };
 
 exports.registerSubmit = function(req, res){
-    console.log("post...");
-
     var mail = req.param('mail');
     var pwd = req.param('pwd');
 
     var isValidUser = validateEmail(mail);
 
+    if(isValidUser && pwd.length >= 8) {
 
-    console.log("login: " + mail);
-    console.log(isValidUser);
-    console.log("password:" + pwd);
+        GLOBAL.db.newUser(mail, pwd).then(function(user) {
+            req.session.user = user;
+            res.end("registration successfull");
+        }).fail(function(err) {
+            res.end("registration failed");
+        });
 
-    if(isValidUser && pwd.length > 8) {
-
-        GLOBAL.db.newUser(mail, pwd).then(console.log("created user")).fail(console.log("error creating user"));
 
     } else {
-
-
-        res.render('register', {title: 'Fast soup-io', errorInfo: "error...."});
-
-
+        res.render('register', {title: 'Fast soup-io', errorInfo: "Please insert a valid email address " +
+            "and a correct password (min. 8 characters)."});
     }
-
-
-    //res.render('register', {title: 'Fast soup-io', locals:{errorInfo: "something"}});
-
-    //res.render('register', { title: 'Fast soup-io', errorInfo: 'error.....' });
-
 };
 
 
