@@ -1,6 +1,5 @@
 exports.register = function(req, res){
 
-
     console.log("get...");
 
     res.render('register', { title: 'Express' });

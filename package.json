@@ -11,6 +11,7 @@
     "mongoose": "*",
     "gridfs-stream": "*",
     "q": "*",
-    "bcrypt": "*"
+    "bcrypt": "*",
+    "emailjs": "*"
   }
 }
