@@ -41,6 +41,7 @@ app.get('/i/:id', routes.image);
 app.get('/i', routes.listImages);
 app.get('/i_upload', routes.uploadSun);
 app.get('/register', auth.register);
+app.get('/about', auth.about);
 
 app.post('/register', auth.registerSubmit);
 app.post('/login', auth.login);

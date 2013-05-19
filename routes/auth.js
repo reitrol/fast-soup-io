@@ -27,6 +27,10 @@ exports.registerSubmit = function(req, res){
 
 };
 
+exports.about = function(req, res){
+    res.render('about', { title: 'Fast soup-io' });
+};
+
 
 exports.login = function(req, res) {
     var mail = req.param('mail');
