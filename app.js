@@ -10,6 +10,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , Database = require('./lib/Database')
+  , upload = require('./routes/upload')
 ;
 
 GLOBAL.db = new Database('mongodb://soupio:rofl@5.9.81.44:27017/soupio');
@@ -23,7 +24,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
-app.use(express.bodyParser());
+app.use(express.bodyParser({uploadDir:'./uploads'}));
 app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
@@ -58,6 +59,8 @@ app.post('/login', auth.login);
 app.post('/profile', user.profileUpdate)
 
 
+app.get('/upload', upload.form);
+app.post('/upload', upload.post);
 
 
 http.createServer(app).listen(app.get('port'), function(){
