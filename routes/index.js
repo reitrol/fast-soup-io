@@ -21,3 +21,7 @@ exports.uploadSun = function(req,res ) {
     GLOBAL.db.uploadSun();
     res.send("done");
 }
+
+exports.mystream = function(req,res ) {
+    res.render('mystream', {title: 'mystream'});
+}

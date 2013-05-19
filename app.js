@@ -50,10 +50,13 @@ app.get('/i', routes.listImages);
 app.get('/i_upload', routes.uploadSun);
 app.get('/register', auth.register);
 app.get('/about', auth.about);
+app.get('/mystream', routes.mystream)
+app.get('/profile', user.profile)
+app.get('/logout', auth.logout);
 
 app.post('/register', auth.registerSubmit);
 app.post('/login', auth.login);
-app.get('/logout', auth.logout);
+
 
 app.get('/upload', upload.form);
 app.post('/upload', upload.post);

@@ -10,9 +10,7 @@ exports.registerSubmit = function(req, res){
     var mail = req.param('mail');
     var pwd = req.param('pwd');
 
-    var isValidUser = validateEmail(mail);
-
-    if(isValidUser && pwd.length >= 8) {
+    if(isValidMail(mail) && pwd.length >= 8) {
 
         GLOBAL.db.newUser(mail, pwd).then(function() {
             res.end("registration successfull");
@@ -28,7 +26,7 @@ exports.registerSubmit = function(req, res){
 };
 
 
-function validateEmail(email)
+function isValidMail(email)
 {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
@@ -46,7 +44,7 @@ exports.login = function(req, res) {
     GLOBAL.db.authUser(mail, pwd)
         .then(function(user) {
             req.session.user = user;
-            res.end("login successfull");
+            res.redirect('/');
         }).fail(function(err) {
            res.end("login failed");
         });

@@ -1,0 +1,8 @@
+extends layout
+block content
+    div.row
+        div.span3
+        div.span9
+
+            for entry in session.user.stream.entries
+                img(src="/i/#{entry.image}")
