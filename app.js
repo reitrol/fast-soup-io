@@ -30,6 +30,12 @@ app.use(express.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.dynamicHelpers({
+    session: function (req, res) {
+        return req.session;
+    }
+});
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
