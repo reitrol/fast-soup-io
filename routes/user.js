@@ -8,5 +8,31 @@ exports.list = function(req, res){
 };
 
 exports.profile = function(req, res){
-    res.send("respond with a resource");
+
+    if(req.session.user) {
+        res.render('profile', {title: 'Fast soup-io', errorInfo: "", user: req.session.user.email, pwd: ""});
+    } else {
+        res.redirect("/");
+    }
+
+};
+
+
+exports.profileUpdate = function(req, res){
+    var pwd = req.param('pwd');
+
+    if(pwd.length >= 8) {
+
+        req.session.user.password = pwd;
+        req.session.save(function(err){
+            // session saved
+        });
+
+    } else {
+        res.render('profile', {title: 'Fast soup-io', errorInfo: "Please insert a valid password " +
+            "(min. 8 characters).", user: req.session.user.email, pwd: pwd});
+    }
+
+
+    res.render('profile', {title: 'Fast soup-io', errorInfo: "", user: "reitrol@gmx.net", pwd: ""});
 };

@@ -56,6 +56,7 @@ app.get('/logout', auth.logout);
 
 app.post('/register', auth.registerSubmit);
 app.post('/login', auth.login);
+app.post('/profile', user.profileUpdate)
 
 
 app.get('/upload', upload.form);

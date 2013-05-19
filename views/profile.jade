@@ -1,0 +1,29 @@
+extends layout
+block content
+    include nav
+
+    div.row
+        div.span4
+        div.span7
+
+            h1 Modify personal information
+
+
+            form.form-horizontal(method="POST", action="/profile")
+                div.control-group
+                    lable.control-label Email:
+                    div.controls
+                        label()= user
+
+                    lable.control-label Password:
+                    div.controls
+                        - if(pwd)
+                            input(type="password", name="pwd", placeholder="Password", value=pwd)
+                        - else
+                            input(type="password", name="pwd", placeholder="Password")
+
+                    - if (errorInfo)
+                        div.span3.alert.alert-error
+                            label()= errorInfo
+
+                button.btn Update
