@@ -27,3 +27,20 @@ exports.registerSubmit = function(req, res){
 
 };
 
+
+exports.login = function(req, res) {
+    var mail = req.param('mail');
+    var pwd  = req.param('pwd');
+
+    GLOBAL.db.authUser(mail, pwd)
+        .then(function(user) {
+            req.session.user = user;
+            res.end("login successfull");
+        }).fail(function(err) {
+           res.end("login failed");
+        });
+};
+exports.logout = function(req, res) {
+    req.session.destroy();
+};
+

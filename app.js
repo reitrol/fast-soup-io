@@ -43,7 +43,8 @@ app.get('/i_upload', routes.uploadSun);
 app.get('/register', auth.register);
 
 app.post('/register', auth.registerSubmit);
-
+app.post('/login', auth.login);
+app.get('/logout', auth.logout);
 
 
 
