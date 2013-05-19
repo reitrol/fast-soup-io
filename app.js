@@ -42,6 +42,10 @@ app.get('/i', routes.listImages);
 app.get('/i_upload', routes.uploadSun);
 app.get('/register', auth.register);
 
+
+
+
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
