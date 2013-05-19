@@ -15,7 +15,17 @@ block nav
                             a(href="/about") About
                     form.navbar-form.pull-right(action="/login", method="POST")
                         if session.user
-                            a.btn(href="/") Profile
+                            div.btn
+                                a.dropdown-toggle.pull-right(href="#",data-toggle="dropdown") My Profile
+                                    b.caret
+                                ul.dropdown-menu.pull-right
+                                    li
+                                        a(href="/profile") My Profile
+                                    li
+                                        a(href="/settings") Settings
+                                    li.divider
+                                    li
+                                        a(href="/logout") Logout
                         else
                             input.span2( type="text", name="mail", placeholder="Email")
                             input.span2( type="password",name="password", placeholder="Password")
