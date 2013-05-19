@@ -3,7 +3,7 @@
  */
 
 exports.register = function(req, res){
-    res.render('register', {title: 'Fast soup-io', errorInfo: ""});
+    res.render('register', {title: 'Fast soup-io', errorInfo: "", user: "", pwd: ""});
 };
 
 exports.registerSubmit = function(req, res){
@@ -23,7 +23,7 @@ exports.registerSubmit = function(req, res){
 
     } else {
         res.render('register', {title: 'Fast soup-io', errorInfo: "Please insert a valid email address " +
-            "and a correct password (min. 8 characters)."});
+            "and a correct password (min. 8 characters).", user: mail, pwd: pwd});
     }
 };
 
