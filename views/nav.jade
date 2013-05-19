@@ -13,9 +13,10 @@ block nav
                             a(href="/") Home
                         li
                             a(href="/about") About
-                    form.navbar-form.pull-right
+                    form.navbar-form.pull-right(action="/login")
                         input.span2( type="text", name="mail", placeholder="Email")
-                        input.span2( type="password",name="password", placeholder="Password")
+                        input.span2( type="password",name="pwd", placeholder="Password")
                         button.btn( type="submit") Sign in
                         a.btn(href="/register") Register
+
 
