@@ -25,9 +25,9 @@ exports.registerSubmit = function(req, res){
     console.log(isValidUser);
     console.log("password:" + pwd);
 
-    if(isValidUser) {
+    if(isValidUser && pwd.length > 8) {
 
-        GLOBAL.db.newUser(mail, pwd).then("my function").fail("error handling")
+        GLOBAL.db.newUser(mail, pwd).then(console.log("created user")).fail(console.log("error creating user"));
     }
 
     res.render('register', { title: 'Fast soup-io' });
