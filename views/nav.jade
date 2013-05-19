@@ -10,18 +10,12 @@ block nav
                 div.nav-collapse.collapse
                     ul.nav
                         li.active
-                            a(href="#") Home
+                            a(href="/") Home
                         li
                             a(href="/about") About
-                        li
-                            a(href="#contact") Contact
-                div.nav-collapse.collapse
-                    ul.nav.pull-right
-                        li
-                            form.navbar-form
-                            input( type="text", name="mail", placeholder="Email")
-                            input( type="password",name="password", placeholder="Password")
-                            button.btn.btn-navbar( type="submit") Sign in
-                        li
-                            button.btn.btn-navbar Register
+                    form.navbar-form.pull-right
+                        input.span2( type="text", name="mail", placeholder="Email")
+                        input.span2( type="password",name="password", placeholder="Password")
+                        button.btn( type="submit") Sign in
+                        a.btn(href="/register") Register
 
