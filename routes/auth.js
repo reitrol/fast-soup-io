@@ -2,8 +2,6 @@
  * GET register page.
  */
 
-var expect = require('chai');
-
 exports.register = function(req, res){
 
     console.log("get...");
@@ -30,7 +28,8 @@ exports.registerSubmit = function(req, res){
         GLOBAL.db.newUser(mail, pwd).then(console.log("created user")).fail(console.log("error creating user"));
     }
 
-    res.render('register', { title: 'Fast soup-io' });
+
+    res.render('register', { title: 'Fast soup-io', error: 'error.....' });
 
 };
 

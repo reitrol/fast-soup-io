@@ -7,8 +7,10 @@ block content
             div.control-group
                 lable.control-label Email:
                 div.controls
-                    input(type="text", name="mail")
+                    input(type="text", name="mail", placeholder="Email")
                 lable.control-label Password:
                 div.controls
-                    input(type="password", name="pwd")
-            button.btn submit
+                    input(type="password", name="pwd", placeholder="Password")
+                div.label
+                    {error}
+            button.btn Register
