@@ -6,8 +6,7 @@ exports.register = function(req, res){
 
     console.log("get...");
 
-    res.render('register', { title: 'Express' });
-
+    res.render('register', {title: 'Fast soup-io', errorInfo: ""});
 };
 
 exports.registerSubmit = function(req, res){
@@ -23,16 +22,22 @@ exports.registerSubmit = function(req, res){
     console.log(isValidUser);
     console.log("password:" + pwd);
 
-    if(isValidUser) { //} && pwd.length > 8) {
+    if(isValidUser && pwd.length > 8) {
 
-        GLOBAL.db.newUser(mail, pwd)
-            .then(function() {console.log("created user") })
-            .fail(function(err) {console.log("error creating user" + err) })
-        ;
+        GLOBAL.db.newUser(mail, pwd).then(console.log("created user")).fail(console.log("error creating user"));
+
+    } else {
+
+
+        res.render('register', {title: 'Fast soup-io', errorInfo: "error...."});
+
+
     }
 
 
-    res.render('register', { title: 'Fast soup-io', error: 'error.....' });
+    //res.render('register', {title: 'Fast soup-io', locals:{errorInfo: "something"}});
+
+    //res.render('register', { title: 'Fast soup-io', errorInfo: 'error.....' });
 
 };
 
