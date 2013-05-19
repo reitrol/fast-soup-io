@@ -46,7 +46,7 @@ exports.login = function(req, res) {
     GLOBAL.db.authUser(mail, pwd)
         .then(function(user) {
             req.session.user = user;
-            res.end("login successfull");
+            res.redirect('/');
         }).fail(function(err) {
            res.end("login failed");
         });
