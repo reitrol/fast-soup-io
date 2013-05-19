@@ -18,12 +18,12 @@ exports.registerSubmit = function(req, res){
     console.log(pwd);
 
 
-    //user = GLOBAL.db.newUser(mail, pwd);
+    GLOBAL.db.newUser(mail, pwd).then("my function").fail("error handling")
 
     //console.log(user);
 
 
-    res.render('register', { title: 'Express' });
+    res.render('register', { title: 'Fast soup-io' });
 
 };
 
