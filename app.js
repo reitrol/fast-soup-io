@@ -49,6 +49,7 @@ app.get('/i', routes.listImages);
 app.get('/i_upload', routes.uploadSun);
 app.get('/register', auth.register);
 app.get('/about', auth.about);
+app.get('/mystream', routes.mystream)
 
 app.post('/register', auth.registerSubmit);
 app.post('/login', auth.login);

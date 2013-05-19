@@ -15,7 +15,7 @@ block nav
                             a(href="/about") About
                     form.navbar-form.pull-right(action="/login", method="POST")
                         if session.user
-                            button.btn( type="profile") Profile
+                            a.btn(href="/") Profile
                         else
                             input.span2( type="text", name="mail", placeholder="Email")
                             input.span2( type="password",name="password", placeholder="Password")
