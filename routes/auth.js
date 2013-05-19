@@ -3,16 +3,14 @@
  */
 
 exports.register = function(req, res){
-    res.render('register', {title: 'Fast soup-io', errorInfo: ""});
+    res.render('register', {title: 'Fast soup-io', errorInfo: "", user: "", pwd: ""});
 };
 
 exports.registerSubmit = function(req, res){
     var mail = req.param('mail');
     var pwd = req.param('pwd');
 
-    var isValidUser = validateEmail(mail);
-
-    if(isValidUser && pwd.length >= 8) {
+    if(isValidMail(mail) && pwd.length >= 8) {
 
         GLOBAL.db.newUser(mail, pwd).then(function() {
             res.end("registration successfull");
@@ -23,12 +21,12 @@ exports.registerSubmit = function(req, res){
 
     } else {
         res.render('register', {title: 'Fast soup-io', errorInfo: "Please insert a valid email address " +
-            "and a correct password (min. 8 characters)."});
+            "and a correct password (min. 8 characters).", user: mail, pwd: pwd});
     }
 };
 
 
-function validateEmail(email)
+function isValidMail(email)
 {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);

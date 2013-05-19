@@ -9,14 +9,20 @@ block content
                 div.control-group
                     lable.control-label Email:
                     div.controls
-                        input(type="text", name="mail", placeholder="Email")
+                        - if(user)
+                            input(type="text", name="mail", placeholder="Email", value=user)
+                        - else
+                            input(type="text", name="mail", placeholder="Email")
+
                     lable.control-label Password:
                     div.controls
-                        input(type="password", name="pwd", placeholder="Password")
+                        - if(pwd)
+                            input(type="password", name="pwd", placeholder="Password", value=pwd)
+                        - else
+                            input(type="password", name="pwd", placeholder="Password")
 
                     - if (errorInfo)
                         div.span3.alert.alert-error
                             label()= errorInfo
-
 
                 button.btn Register
