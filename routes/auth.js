@@ -1,4 +1,4 @@
 exports.register = function(req, res){
-    res.render('register', { title: 'Express' });
+    res.render('register', { title: 'Fast soup-io' });
 };
 
