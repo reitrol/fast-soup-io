@@ -23,9 +23,12 @@ exports.registerSubmit = function(req, res){
     console.log(isValidUser);
     console.log("password:" + pwd);
 
-    if(isValidUser && pwd.length > 8) {
+    if(isValidUser) { //} && pwd.length > 8) {
 
-        GLOBAL.db.newUser(mail, pwd).then(console.log("created user")).fail(console.log("error creating user"));
+        GLOBAL.db.newUser(mail, pwd)
+            .then(function() {console.log("created user") })
+            .fail(function(err) {console.log("error creating user" + err) })
+        ;
     }
 
 
