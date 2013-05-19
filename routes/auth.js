@@ -30,6 +30,8 @@ exports.registerSubmit = function(req, res){
 
 
         res.render('register', {title: 'Fast soup-io', errorInfo: "error...."});
+
+
     }
 
 

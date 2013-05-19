@@ -27,8 +27,15 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
+
+// Exposes sessions to jade (e.g. #{session.user.email}
+app.use(function(req,res,next){
+    res.locals.session = req.session;
+    next();
+});
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // development only
 if ('development' == app.get('env')) {
