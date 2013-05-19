@@ -15,27 +15,13 @@ block nav
                             a(href="#about") About
                         li
                             a(href="#contact") Contact
-                        li.dropdown
-                            a.dropdown-toggle(href="#",data-toggle="dropdown") Dropdown
-                                b.caret
-                            ul.dropdown-menu
-                                li
-                                    a(href="#") Action
-                                li
-                                    a(href="#") Another action
-                                li
-                                    a(href="#") Something else here
-                                li.divider
-                                li.nav-header Nav header
-                                li
-                                    a(href="#") Separated link
-                                li
-                                    a(href="#") One more separated link
+                div.nav-collapse.collapse
                     ul.nav.pull-right
                         li
-                            button.btn Register
+                            form.navbar-form
+                            input( type="text", name="mail", placeholder="Email")
+                            input( type="password",name="password", placeholder="Password")
+                            button.btn.btn-navbar( type="submit") Sign in
+                        li
+                            button.btn.btn-navbar Register
 
-                    form.navbar-form.pull-right
-                        input.span2( type="text", placeholder="Email")
-                        input.span2( type="password", placeholder="Password")
-                        button.btn( type="submit") Sign in
