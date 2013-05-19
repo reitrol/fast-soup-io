@@ -50,7 +50,7 @@ exports.about = function(req, res){
 
 exports.login = function(req, res) {
     var mail = req.param('mail');
-    var pwd  = req.param('pwd');
+    var pwd  = req.param('password');
 
     GLOBAL.db.authUser(mail, pwd)
         .then(function(user) {
