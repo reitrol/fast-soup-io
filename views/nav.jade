@@ -20,9 +20,12 @@ block nav
                                     b.caret
                                 ul.dropdown-menu.pull-right
                                     li
-                                        a(href="#", onclick="$('uploadPicture').show();") Upload picture
-                                        a.dropdown-menu.pull-right#uploadPicture(href='#',data-toggle='dropdown2').hidden
+                                        a(href="#", onclick="$('#uploadPicture').show()") Upload picture
+                                        a.dropdown-menu.pull-right(id='uploadPicture', href='#',data-toggle='dropdown2').hidden
                                             input.typeahead
+                                                form(method="POST", enctype="multipart/form-data", action="/upload")
+                                                input(type="file", name="image")
+                                                input(type="submit")
                                     li
                                         a(href="/profile") My Profile
                                     li
