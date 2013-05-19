@@ -14,9 +14,9 @@ block nav
                         li
                             a(href="/about") About
                     form.navbar-form.pull-right(action="/login", method="POST")
-                        - if (session.user)
-                            button.btn( type="Profile") Profile
-                        - else
+                        if session.user
+                            button.btn( type="profile") Profile
+                        else
                             input.span2( type="text", name="mail", placeholder="Email")
                             input.span2( type="password",name="password", placeholder="Password")
                             button.btn( type="submit") Sign in
