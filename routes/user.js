@@ -27,6 +27,7 @@ exports.profileUpdate = function(req, res){
         req.session.save(function(err){
             // session saved
         });
+        res.redirect("/")
 
     } else {
         res.render('profile', {title: 'Fast soup-io', errorInfo: "Please insert a valid password " +
