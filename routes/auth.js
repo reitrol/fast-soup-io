@@ -14,15 +14,17 @@ exports.registerSubmit = function(req, res){
 
     if(isValidMail(mail) && pwd.length >= 8) {
 
-        GLOBAL.db.newUser(mail, pwd).then(function() {
+        GLOBAL.db.newUser(mail, pwd).then(function(user){
+
+            email.sendValidationMail(user);
+
+        }).then(function() {
 
             res.render('register', {title: 'Fast soup-io', errorInfo: "Thank you for your registration! " +
                 "An email has been sent to your registered email address!", user: mail, pwd: pwd,
                 isDisabled : "disabled"});
 
 
-        }).then(function(user){
-                email.sendValidationMail(user);
         }).fail(function(err) {
             res.render('register', {title: 'Fast soup-io', errorInfo: err + "! Please try again.", user: mail, pwd: pwd,
                 isDisabled : ""});
