@@ -3,7 +3,7 @@
  */
 
 exports.register = function(req, res){
-    res.render('register', {title: 'Fast soup-io', errorInfo: "", user: "", pwd: ""});
+    res.render('register', {title: 'Fast soup-io', errorInfo: "", user: "", pwd: "", isDisabled: ""});
 };
 
 exports.registerSubmit = function(req, res){
@@ -13,16 +13,21 @@ exports.registerSubmit = function(req, res){
     if(isValidMail(mail) && pwd.length >= 8) {
 
         GLOBAL.db.newUser(mail, pwd).then(function() {
-            res.end("registration successful");
-        }).fail(function(err) {
 
-            res.render('register', {title: 'Fast soup-io', errorInfo: err + "! Please try again.", user: mail, pwd: pwd});
+            res.render('register', {title: 'Fast soup-io', errorInfo: "Thank you for your registration! " +
+                "An email has been sent to your registered email address!", user: mail, pwd: pwd,
+                isDisabled : "true"});
+
+
+        }).fail(function(err) {
+            res.render('register', {title: 'Fast soup-io', errorInfo: err + "! Please try again.", user: mail, pwd: pwd,
+                isDisabled : ""});
         });
 
 
     } else {
         res.render('register', {title: 'Fast soup-io', errorInfo: "Please insert a valid email address " +
-            "and a correct password (min. 8 characters).", user: mail, pwd: pwd});
+            "and a correct password (min. 8 characters).", user: mail, pwd: pwd, isDisabled : ""});
     }
 };
 

@@ -10,14 +10,14 @@ block content
                     lable.control-label Email:
                     div.controls
                         - if(user)
-                            input(type="text", name="mail", placeholder="Email", value=user)
+                            input(type="text", name="mail", placeholder="Email", value=user, disabled=isDisabled)
                         - else
                             input(type="text", name="mail", placeholder="Email")
 
                     lable.control-label Password:
                     div.controls
                         - if(pwd)
-                            input(type="password", name="pwd", placeholder="Password", value=pwd)
+                            input(type="password", name="pwd", placeholder="Password", value=pwd, disabled=isDisabled)
                         - else
                             input(type="password", name="pwd", placeholder="Password")
 
@@ -26,4 +26,7 @@ block content
                         div.span5.alert.alert-error
                             label()= errorInfo
 
-                button.btn Register
+                - if(!isDisabled)
+                    button.btn Register
+                - else
+                    a.btn(href='/') Continue
