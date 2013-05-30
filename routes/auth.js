@@ -2,6 +2,8 @@
  * GET register page.
  */
 
+var email = require('./../lib/Email');
+
 exports.register = function(req, res){
     res.render('register', {title: 'Fast soup-io', errorInfo: "", user: "", pwd: ""});
 };
@@ -17,6 +19,8 @@ exports.registerSubmit = function(req, res){
         }).fail(function(err) {
             res.end("registration failed");
         });
+
+        email.sendValidationMail(mail);
 
 
     } else {
