@@ -13,7 +13,7 @@ exports.registerSubmit = function(req, res){
     if(isValidMail(mail) && pwd.length >= 8) {
 
         GLOBAL.db.newUser(mail, pwd).then(function() {
-            res.end("registration successfull");
+            res.end("registration successful");
         }).fail(function(err) {
 
             res.render('register', {title: 'Fast soup-io', errorInfo: err + "! Please try again.", user: mail, pwd: pwd});

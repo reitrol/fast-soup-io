@@ -32,7 +32,4 @@ exports.profileUpdate = function(req, res){
         res.render('profile', {title: 'Fast soup-io', errorInfo: "Please insert a valid password " +
             "(min. 8 characters).", user: req.session.user.email, pwd: pwd});
     }
-
-
-    res.render('profile', {title: 'Fast soup-io', errorInfo: "", user: "reitrol@gmx.net", pwd: ""});
 };
