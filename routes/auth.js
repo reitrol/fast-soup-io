@@ -13,7 +13,7 @@ exports.registerSubmit = function(req, res){
     if(isValidMail(mail) && pwd.length >= 8) {
 
         GLOBAL.db.newUser(mail, pwd).then(function() {
-            res.end("registration successfull");
+            res.end("registration successful");
         }).fail(function(err) {
             res.end("registration failed");
         });
