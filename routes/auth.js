@@ -5,7 +5,7 @@
 var email = require('./../lib/Email');
 
 exports.register = function(req, res){
-    res.render('register', {title: 'Fast soup-io', errorInfo: "", user: "", pwd: "", isDisabled: ""});
+    res.render('register', {title: 'Fast soup-io', errorInfo: "", user: "", pwd: "", isDisabled: "false"});
 };
 
 exports.registerSubmit = function(req, res){
@@ -27,14 +27,14 @@ exports.registerSubmit = function(req, res){
 
         }).fail(function(err) {
             res.render('register', {title: 'Fast soup-io', errorInfo: err + "! Please try again.", user: mail, pwd: pwd,
-                isDisabled : ""});
+                isDisabled : "false"});
         });
 
 
 
     } else {
         res.render('register', {title: 'Fast soup-io', errorInfo: "Please insert a valid email address " +
-            "and a correct password (min. 8 characters).", user: mail, pwd: pwd, isDisabled : ""});
+            "and a correct password (min. 8 characters).", user: mail, pwd: pwd, isDisabled : "false"});
     }
 };
 

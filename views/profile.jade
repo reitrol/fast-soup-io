@@ -23,7 +23,8 @@ block content
                             input(type="password", name="pwd", placeholder="Password")
 
                     - if (errorInfo)
-                        div.span3.alert.alert-error
-                            label()= errorInfo
+                        div.span5.alert
+                            button.close(type="button", data-dismiss="alert") &times;
+                            span()= errorInfo
 
                 button.btn Update
