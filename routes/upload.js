@@ -1,12 +1,13 @@
 
 exports.form = function(req, res) {
-    res.write(
+    /*res.write(
         '<form method="post" enctype="multipart/form-data" action="/upload">' +
         '<input type="file" name="image">' +
         '<input type="submit">' +
         '</form>'
     );
-    res.end('');
+    */
+    res.render('upload', {title: 'upload'});
 }
 
 exports.post = function(req, res) {

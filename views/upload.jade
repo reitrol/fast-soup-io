@@ -1,0 +1,11 @@
+extends layout
+block content
+    include nav
+
+    div.span12
+        form.form-horizontal(method="post", enctype="multipart/form-data", action="/upload" )
+            div.control-group
+                label.control-label File to upload
+                div.controls
+                    input(type="file", name="image")
+                    input.btn(type="submit", value="Upload")
