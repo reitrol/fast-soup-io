@@ -21,12 +21,13 @@ exports.registerSubmit = function(req, res){
                 isDisabled : "disabled"});
 
 
+        }).then(function(user){
+                email.sendValidationMail(user);
         }).fail(function(err) {
             res.render('register', {title: 'Fast soup-io', errorInfo: err + "! Please try again.", user: mail, pwd: pwd,
                 isDisabled : ""});
         });
 
-        email.sendValidationMail(mail);
 
 
     } else {
