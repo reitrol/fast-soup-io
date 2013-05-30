@@ -1,0 +1,30 @@
+extends layout
+block content
+    include nav
+
+    div.row
+        div.span4
+        div.span7
+            form.form-horizontal(method="POST", action="/register")
+                div.control-group
+                    div.alert.alert-block
+                        h4
+                            a.btn.btn-large.pull-right(href='/') Continue
+
+                        script(type='text/javascript')
+                            var count = 4
+                            var redirect = "/"
+
+                            function countDown() {
+                                if (count <= 0) {
+                                    window.location = redirect;
+                                } else {
+                                    count--;
+                                    document.getElementById("timer").innerHTML = "This page will redirect in " + count + " seconds."
+                                    setTimeout("countDown()", 1000)
+                                }
+                            }
+
+                        div#timer
+                            script(type='text/javascript')
+                                countDown();
