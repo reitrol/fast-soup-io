@@ -15,7 +15,8 @@ exports.registerSubmit = function(req, res){
         GLOBAL.db.newUser(mail, pwd).then(function() {
             res.end("registration successfull");
         }).fail(function(err) {
-            res.end("registration failed");
+
+            res.render('register', {title: 'Fast soup-io', errorInfo: err + "! Please try again.", user: mail, pwd: pwd});
         });
 
 
