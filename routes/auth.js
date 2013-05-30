@@ -5,7 +5,7 @@
 var email = require('./../lib/Email');
 
 exports.register = function(req, res){
-    res.render('register', {title: 'Fast soup-io', errorInfo: "", user: "", pwd: "", isDisabled: "false"});
+    res.render('register', {title: 'Fast soup-io', errorInfo: "", user: "", pwd: "", isDisabled: ""});
 };
 
 exports.registerSubmit = function(req, res){
