@@ -11,6 +11,7 @@ var express = require('express')
   , path = require('path')
   , db = require('./lib/Database')
   , upload = require('./routes/upload')
+  , flash = require('connect-flash')
 ;
 
 db.init('mongodb://soupio:rofl@5.9.81.44:27017/soupio');
@@ -34,6 +35,7 @@ app.use(function(req,res,next){
     res.locals.session = req.session;
     next();
 });
+app.use(flash());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
