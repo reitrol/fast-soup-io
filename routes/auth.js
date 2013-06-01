@@ -2,37 +2,34 @@ var db = require('./../lib/Database');
 var email = require('./../lib/Email');
 
 exports.register = function(req, res){
-    res.render('register', {title: 'Fast soup-io', errorInfo: "", user: "", pwd: "", isDisabled: "false"});
+    res.render('register', {errorInfo: "", user: "", pwd: "", isDisabled: "false"});
 };
 
 exports.registerSubmit = function(req, res){
     var mail = req.param('mail');
     var pwd = req.param('pwd');
 
-    if(isValidMail(mail) && pwd.length >= 8) {
-
-        db.newUser(mail, pwd).then(function(user){
-
-            email.sendValidationMail(user);
-
-        }).then(function() {
-
-            res.render('register', {title: 'Fast soup-io', errorInfo: "Thank you for your registration! " +
-                "An email has been sent to your registered email address!", user: mail, pwd: pwd,
-                isDisabled : "disabled"});
-
-
-        }).fail(function(err) {
-            res.render('register', {title: 'Fast soup-io', errorInfo: err + "! Please try again.", user: mail, pwd: pwd,
-                isDisabled : "false"});
-        });
-
-
-
-    } else {
-        res.render('register', {title: 'Fast soup-io', errorInfo: "Please insert a valid email address " +
-            "and a correct password (min. 8 characters).", user: mail, pwd: pwd, isDisabled : "false"});
+    if(!isValidMail(mail)) {
+        res.flash('error', "Please enter a valid mail address");
+        res.render('register');
+        return;
     }
+    if( pwd.length < 8 ) {
+        res.flash('error', "Please enter at least 8 chars as password");
+        res.render('register');
+        return;
+    }
+    db.newUser(mail, pwd).then(function(user){
+        //email.sendValidationMail(user); // TODO: Currently not working
+    }).then(function() {
+        req.flash('success', "Thank you for your registration! \n" +
+            "An email has been sent to your registered email address!");
+        res.redirect('/');
+
+    }).fail(function(err) {
+        req.flash('error', err + '! Please try agian.');
+        res.render('register');
+    });
 };
 
 
@@ -43,7 +40,7 @@ function isValidMail(email)
 }
 
 exports.about = function(req, res){
-    res.render('about', { title: 'Fast soup-io' });
+    res.render('about');
 };
 
 
@@ -61,5 +58,5 @@ exports.login = function(req, res) {
 };
 exports.logout = function(req, res) {
     req.session.destroy();
-    res.render('logout', { title: 'Fast soup-io' });
+    res.render('logout');
 };

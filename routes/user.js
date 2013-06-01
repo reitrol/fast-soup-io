@@ -7,7 +7,7 @@ exports.list = function(req, res){
 exports.profile = function(req, res){
 
     if(req.session.user) {
-        res.render('profile', {title: 'Fast soup-io', errorInfo: "", user: req.session.user.email, pwd: ""});
+        res.render('profile', {errorInfo: "", user: req.session.user.email, pwd: ""});
     } else {
         res.redirect("/");
     }
@@ -27,7 +27,7 @@ exports.profileUpdate = function(req, res){
         res.redirect("/")
 
     } else {
-        res.render('profile', {title: 'Fast soup-io', errorInfo: "Please insert a valid password " +
-            "(min. 8 characters).", user: req.session.user.email, pwd: pwd});
+        req.flash('error', 'Please use a password with min. 8 characters');
+        res.render('profile');
     }
 };

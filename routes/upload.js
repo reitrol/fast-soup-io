@@ -8,7 +8,7 @@ exports.form = function(req, res) {
         '</form>'
     );
     */
-    res.render('upload', {title: 'upload'});
+    res.render('upload');
 }
 
 exports.post = function(req, res) {
