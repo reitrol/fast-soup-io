@@ -4,7 +4,7 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Fast soup-io' });
 };
 
 exports.image = function(req, res){
@@ -20,4 +20,8 @@ exports.listImages = function(req, res) {
 exports.uploadSun = function(req,res ) {
     GLOBAL.db.uploadSun();
     res.send("done");
+}
+
+exports.mystream = function(req,res ) {
+    res.render('mystream', {title: 'mystream'});
 }

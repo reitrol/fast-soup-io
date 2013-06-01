@@ -1,0 +1,29 @@
+extends layout
+block content
+    include nav
+
+    div.row
+        div.span4
+        div.span7
+            div.control-group
+                div.alert.alert-block
+                    h4  Logout successfully!
+                        a.btn.btn-large.pull-right(href='/') Continue
+
+                    script(type='text/javascript')
+                        var count = 4
+                        var redirect = "/"
+
+                        function countDown() {
+                            if (count <= 0) {
+                                window.location = redirect;
+                            } else {
+                                count--;
+                                document.getElementById("timer").innerHTML = "This page will redirect in " + count + " seconds."
+                                setTimeout("countDown()", 1000)
+                            }
+                        }
+
+                    span#timer
+                        script(type='text/javascript')
+                            countDown();

@@ -12,6 +12,7 @@
     "gridfs-stream": "*",
     "q": "*",
     "bcrypt": "*",
-     "emailjs": "*"
+    "emailjs": "*",
+    "express-validator": "*"
   }
 }

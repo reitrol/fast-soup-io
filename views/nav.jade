@@ -6,36 +6,44 @@ block nav
                     span.icon-bar
                     span.icon-bar
                     span.icon-bar
-                a.brand( href="#") Project name
+                a.brand( href="#") fast-node-io
                 div.nav-collapse.collapse
                     ul.nav
                         li.active
-                            a(href="#") Home
+                            a(href="/") Home
                         li
-                            a(href="#about") About
-                        li
-                            a(href="#contact") Contact
-                        li.dropdown
-                            a.dropdown-toggle(href="#",data-toggle="dropdown") Dropdown
-                                b.caret
-                            ul.dropdown-menu
-                                li
-                                    a(href="#") Action
-                                li
-                                    a(href="#") Another action
-                                li
-                                    a(href="#") Something else here
-                                li.divider
-                                li.nav-header Nav header
-                                li
-                                    a(href="#") Separated link
-                                li
-                                    a(href="#") One more separated link
-                    ul.nav.pull-right
-                        li
-                            button.btn Register
+                            a(href="/about") About
 
-                    form.navbar-form.pull-right
-                        input.span2( type="text", placeholder="Email")
-                        input.span2( type="password", placeholder="Password")
-                        button.btn( type="submit") Sign in
+                    if session.user
+                        ul.nav.pull-right
+                            li
+                                div.btn-group
+                                    a.btn.dropdown-toggle(href="#",data-toggle="dropdown") My Profile &nbsp;
+                                        span.caret
+                                    ul.dropdown-menu
+                                        li
+                                            //
+                                                a(href="#", onclick="$('#uploadPicture').show()") Upload picture
+                                                a.dropdown-menu.pull-right(id='uploadPicture', href='#',data-toggle='dropdown2').hidden
+                                                    input.typeahead
+                                                        form(method="POST", enctype="multipart/form-data", action="/upload")
+                                                        input(type="file", name="image")
+                                                        input(type="submit")
+                                            a(href="/upload") Upload Picture
+                                        li
+                                            a(href="/profile") My Profile
+                                        li
+                                            a(href="/settings") Settings
+                                        li.divider
+                                        li
+                                            a(href="/logout") Logout
+                    else
+                        ul.nav.pull-right
+                            li
+                                form.navbar-form(action="/login", method="POST")
+                                    input.span2( type="text", name="mail", placeholder="Email")
+                                    input.span2( type="password",name="password", placeholder="Password")
+                                    button.btn( type="submit") Sign in
+                                    a.btn(href="/register") Register
+
+

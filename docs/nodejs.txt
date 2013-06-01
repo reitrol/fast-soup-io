@@ -1,16 +1,21 @@
-Git Init
+Mit "*" gekennzeichnet wurde bereits gemacht!
+
+
+*Git Init
 Git Beschreibung
-Projekt anlegen für WebStorm
-Projektstruktur erstellen
-URL Struktur festlegen
+*Projekt anlegen für WebStorm
+*Projektstruktur erstellen
+*URL Struktur festlegen
 
 
 Benutzerverwaltung
-	- Frontend Login
-	- Login
-	- Logout
-	- Session/Cookie Management
-	- Austausche von FORM Daten mit "Server"
+	*- Registrierung (inkl. Validierung)
+	*- Frontend Registration
+	*- Frontend Login
+	*- Login
+	*- Logout
+	*- Session/Cookie Management
+	*- Austausche von FORM Daten mit "Server"
 
 
 Upload (für eigenen "Stream")
@@ -20,18 +25,18 @@ Upload (für eigenen "Stream")
 
 	
 Datenbank
-	- Struktur bzw. Tabellen
-	- Index, Upload Datum
-	- Wie ablegen?
-	- Datenbank Schnittstelle
+	*- Struktur bzw. Tabellen
+	*- Index, Upload Datum
+	*- Wie ablegen?
+	*- Datenbank Schnittstelle
 
 	
 Profilseite
-	- Eigene Seite mit meinen Bildern
+	*- Eigene Seite mit meinen Bildern
 	- Eigene Seite mit geteilten Bilder
-	- Gewisse Foto ID Ermitteln
+	*- Gewisse Foto ID Ermitteln
 	- "ID" zu eigenem Profil hinzufügen
-	- Beziehung in DB herstellen
+	*- Beziehung in DB herstellen
 
 
 Frontend fertigstellen und anpassen
