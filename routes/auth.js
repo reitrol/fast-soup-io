@@ -1,7 +1,4 @@
-/*
- * GET register page.
- */
-
+var db = require('./../lib/Database');
 var email = require('./../lib/Email');
 
 exports.register = function(req, res){
@@ -14,7 +11,7 @@ exports.registerSubmit = function(req, res){
 
     if(isValidMail(mail) && pwd.length >= 8) {
 
-        GLOBAL.db.newUser(mail, pwd).then(function(user){
+        db.newUser(mail, pwd).then(function(user){
 
             email.sendValidationMail(user);
 
@@ -54,7 +51,7 @@ exports.login = function(req, res) {
     var mail = req.param('mail');
     var pwd  = req.param('password');
 
-    GLOBAL.db.authUser(mail, pwd)
+    db.authUser(mail, pwd)
         .then(function(user) {
             req.session.user = user;
             res.redirect('/');

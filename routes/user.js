@@ -1,7 +1,4 @@
-
-/*
- * GET users listing.
- */
+var db = require('./../lib/Database');
 
 exports.list = function(req, res){
   res.send("respond with a resource");

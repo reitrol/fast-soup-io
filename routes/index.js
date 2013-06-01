@@ -1,4 +1,5 @@
 
+var db = require('./../lib/Database');
 /*
  * GET home page.
  */
@@ -9,16 +10,16 @@ exports.index = function(req, res){
 
 exports.image = function(req, res){
     var id = req.params.id;
-    GLOBAL.db.streamFile(id, res);
+    db.streamFile(id, res);
 }
 
 exports.listImages = function(req, res) {
-    GLOBAL.db.listFiles();
+    db.listFiles();
     res.send("see console");
 }
 
 exports.uploadSun = function(req,res ) {
-    GLOBAL.db.uploadSun();
+    db.uploadSun();
     res.send("done");
 }
 

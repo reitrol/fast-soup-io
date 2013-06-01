@@ -9,14 +9,14 @@ var express = require('express')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
-  , Database = require('./lib/Database')
+  , db = require('./lib/Database')
   , upload = require('./routes/upload')
 ;
 
-GLOBAL.db = new Database('mongodb://soupio:rofl@5.9.81.44:27017/soupio');
+db.init('mongodb://soupio:rofl@5.9.81.44:27017/soupio');
 
 // WebServer
-var app = GLOBAL.app = express();
+var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);

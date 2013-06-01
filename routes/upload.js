@@ -1,3 +1,4 @@
+var db = require('./../lib/Database');
 
 exports.form = function(req, res) {
     /*res.write(
@@ -11,7 +12,7 @@ exports.form = function(req, res) {
 }
 
 exports.post = function(req, res) {
-    GLOBAL.db.uploadFile(req.files.image.path).then(function() {
+    db.uploadFile(req.files.image.path).then(function() {
         res.end("done");
     })
 }
