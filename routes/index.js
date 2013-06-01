@@ -5,6 +5,10 @@ var db = require('./../lib/Database');
  */
 
 exports.index = function(req, res){
+  req.flash('info', 'Test');
+    req.flash('info', 'Test');
+    req.flash('info', 'Test');
+    req.flash('error', 'Test');
   res.render('index', { title: 'Fast soup-io' });
 };
 

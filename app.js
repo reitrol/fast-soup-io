@@ -33,6 +33,7 @@ app.use(express.session());
 // Exposes sessions to jade (e.g. #{session.user.email}
 app.use(function(req,res,next){
     res.locals.session = req.session;
+    res.locals.req = req;
     next();
 });
 app.use(flash());

@@ -39,6 +39,22 @@ html
                 to improve your experience.
 
         div.container
+            - var info = req.flash('info')
+            - if(info.length != 0) {
+                - info.forEach(function(info) {
+                    div.alert.alert-info
+                        button.close(type='button', data-dismiss='alert')&times;
+                        p= info
+                - });
+            - }
+            - var error = req.flash('error')
+            - if(error.length != 0) {
+                - error.forEach(function(error) {
+                    div.alert.alert-error
+                        button.close(type='button', data-dismiss='alert')&times;
+                        p= error
+                - });
+            - }
             block content
 
         script( src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js")
