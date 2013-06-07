@@ -51,7 +51,7 @@ exports.login = function(req, res) {
     db.authUser(mail, pwd)
         .then(function(user) {
             req.session.user = user;
-            req.flash('error', "Login successful!");
+            req.flash('success', "Login successful!");
             res.redirect('/');
         }).fail(function(err) {
             req.flash('error', "Login failed. Please try again!");
