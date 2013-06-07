@@ -19,9 +19,9 @@ Benutzerverwaltung
 
 
 Upload (für eigenen "Stream")
-	- Upload von Bildern mit POST (Puffern,..)
+	*- Upload von Bildern mit POST (Puffern,..)
 	- Bilder für Datenbank aufbereiten
-	- Upload Frontend
+	*- Upload Frontend
 
 	
 Datenbank
@@ -40,6 +40,3 @@ Profilseite
 
 
 Frontend fertigstellen und anpassen
-Erstellung von Tests
-
-Für den Anfang ggf. Dummy Objekte
