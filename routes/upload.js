@@ -13,6 +13,10 @@ exports.form = function(req, res) {
 
 exports.post = function(req, res) {
     db.uploadFile(req.files.image.path).then(function() {
-        res.end("done");
+        req.flash('error', 'Upload successful!');
+        res.render('upload');
+    }).fail(function(err) {
+        req.flash('error', 'Upload failed! Please try again!');
+        res.render('upload');
     })
-}
+};
