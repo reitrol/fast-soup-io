@@ -2,7 +2,7 @@ var db = require('./../lib/Database');
 var email = require('./../lib/Email');
 
 exports.register = function(req, res){
-    res.render('register', {errorInfo: "", user: "", pwd: "", isDisabled: "false"});
+    res.render('register', {user: "", pwd: ""});
 };
 
 exports.registerSubmit = function(req, res){
@@ -10,13 +10,13 @@ exports.registerSubmit = function(req, res){
     var pwd = req.param('pwd');
 
     if(!isValidMail(mail)) {
-        res.flash('error', "Please enter a valid mail address");
-        res.render('register');
+        req.flash('error', "Please enter a valid mail address");
+        res.render('register', {user: mail, pwd: pwd});
         return;
     }
     if( pwd.length < 8 ) {
-        res.flash('error', "Please enter at least 8 chars as password");
-        res.render('register');
+        req.flash('error', "Please enter at least 8 chars as password");
+        res.render('register', {user: mail, pwd: pwd});
         return;
     }
     db.newUser(mail, pwd).then(function(user){
