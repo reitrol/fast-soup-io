@@ -14,7 +14,7 @@ block nav
                         li
                             a(href="/about") About
 
-                    if iosession.hasSession()
+                    if session.user
                         ul.nav.pull-right
                             li
                                 div.btn-group

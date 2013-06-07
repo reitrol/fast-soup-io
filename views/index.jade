@@ -6,7 +6,7 @@ block content
     div.row
         div.span5
         div.span6
-            if session.user
+            if iosession.hasSession()
                 h1 logged in!
             else
                 h1 Welcome to Fast soup io

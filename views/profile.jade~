@@ -15,7 +15,10 @@ block content
 
                     lable.control-label Password:
                     div.controls
-                        input(type="password", name="pwd", placeholder="Password")
+                        - if(pwd)
+                            input(type="password", name="pwd", placeholder="Password", value=pwd)
+                        - else
+                            input(type="password", name="pwd", placeholder="Password")
 
                     - if (errorInfo)
                         div.span5.alert

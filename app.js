@@ -12,6 +12,7 @@ var express = require('express')
   , db = require('./lib/Database')
   , upload = require('./routes/upload')
   , flash = require('connect-flash')
+  , Session = require('./lib/Session')
 ;
 
 db.init('mongodb://soupio:rofl@5.9.81.44:27017/soupio');
@@ -32,7 +33,8 @@ app.use(express.session());
 
 // Exposes sessions to jade (e.g. #{session.user.email}
 app.use(function(req,res,next){
-    res.locals.session = req.session;
+	res.iosession = new Session(req);  // make visible for routes
+	res.locals.iosession = res.iosession;  // make visible for pages    
     res.locals.req = req;
     next();
 });
