@@ -59,6 +59,6 @@ exports.login = function(req, res) {
         });
 };
 exports.logout = function(req, res) {
-    req.session.destroy();
+    //req.session.destroy();       // TODO: Currently not working
     res.render('logout');
 };
