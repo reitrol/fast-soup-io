@@ -1,0 +1,16 @@
+extends layout
+block vars
+    - var title = "Home"
+
+block content
+    div.row
+        div.span5
+        div.span6
+            if session.user
+                h1 logged in!
+            else
+                h1 Welcome to Fast soup io
+                h3(style="margin-top:10px;") if you would like to post and get part of the community, please Register
+                a.btn.btn-block.btn-primary(style="margin-top: 60px;", href="/register")
+                    h1 Get part! (Register)
+        div.span2
