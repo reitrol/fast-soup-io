@@ -13,7 +13,7 @@ exports.form = function(req, res) {
 
 exports.post = function(req, res) {
 
-    var isValidImage = isImage(req.files.image.name)
+    var isValidImage = isImage(req.files.image.name);
 
     if(isValidImage) {
         db.uploadFile(req.files.image.path).then(function() {

@@ -1,9 +1,9 @@
 var db = require('./../lib/Database');
 
 exports.pictures = function(req, res){
-    if(req.iosession.hasSession()) {
+    if(res.iosession.hasSession()) {
         var list = db.listFiles();
-        res.render('profile', {errorInfo: "", user: req.iosession.getUser().email, pwd: ""});
+        res.render('profile', {errorInfo: "", user: res.iosession.getUser().email, pwd: ""});
     } else {
         res.redirect("/");
     }
@@ -11,8 +11,8 @@ exports.pictures = function(req, res){
 
 exports.profile = function(req, res){
 
-    if(req.iosession.hasSession()) {
-        res.render('profile', {errorInfo: "", user: req.iosession.getUser().email, pwd: ""});
+    if(res.iosession.hasSession()) {
+        res.render('profile', {errorInfo: "", user: res.iosession.getUser().email, pwd: ""});
     } else {
         res.redirect("/");
     }
@@ -25,8 +25,8 @@ exports.profileUpdate = function(req, res){
 
     if(pwd.length >= 8) {
 
-        req.iosession.getUser().password = pwd;
-        req.iosession.getUser().save(function(err){
+        res.iosession.getUser().password = pwd;
+        res.iosession.getUser().save(function(err){
             // session saved
         });
         res.redirect("/")
