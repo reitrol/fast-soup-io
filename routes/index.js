@@ -18,8 +18,8 @@ exports.image = function(req, res){
 }
 
 exports.listImages = function(req, res) {
-    db.listFiles();
-    res.send("see console");
+    var pictures = db.listFiles();
+    res.send(pictures);
 }
 
 exports.uploadSun = function(req,res ) {

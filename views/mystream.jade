@@ -4,5 +4,5 @@ block content
         div.span3
         div.span9
 
-            for entry in iosession.getUser().stream.entries
-                img(src="/i/#{entry.image}")
+            for picture in iosession.getUser().stream.entries
+                img(src="/i/#{picture.image}")
