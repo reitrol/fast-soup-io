@@ -1,7 +1,7 @@
 var db = require('./../lib/Database');
 
-exports.list = function(req, res){
-  res.send("respond with a resource");
+exports.pictures = function(req, res){
+  res.send("respond with pictures");
 };
 
 exports.profile = function(req, res){
