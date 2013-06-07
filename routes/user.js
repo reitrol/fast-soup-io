@@ -1,7 +1,12 @@
 var db = require('./../lib/Database');
 
 exports.pictures = function(req, res){
-  res.send("respond with pictures");
+    if(req.session.user) {
+        var list = db.listFiles();
+        res.render('profile', {errorInfo: "", user: req.session.user.email, pwd: ""});
+    } else {
+        res.redirect("/");
+    }
 };
 
 exports.profile = function(req, res){
