@@ -53,7 +53,8 @@ exports.login = function(req, res) {
             req.session.user = user;
             res.redirect('/');
         }).fail(function(err) {
-           res.end("login failed");
+            req.flash('error', "Login failed. Please try again!");
+            res.render('index');
         });
 };
 exports.logout = function(req, res) {
