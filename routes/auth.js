@@ -57,7 +57,7 @@ exports.login = function(req, res) {
     });
 };
 exports.logout = function(req, res) {
-       // ab hier kein layout mehr rendern, da flash nicht mehr verfuegbar ist
+    // ab hier kein layout mehr rendern, da flash nicht mehr verfuegbar ist
     //res.render('logout');
     res.redirect('/');
 };
