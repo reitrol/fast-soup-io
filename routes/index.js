@@ -9,7 +9,12 @@ exports.index = function(req, res){
     req.flash('info', 'Test');
     req.flash('success', 'Test');
     req.flash('error', 'Test');                   */
-  res.render('index');
+    if(res.iosession.hasSession()) {
+        // user is logged in
+        res.render('mystream');
+    } else {
+        res.render('index');
+    }
 };
 
 exports.image = function(req, res){

@@ -1,4 +1,6 @@
-var db = require('./../lib/Database');
+var db = require('./../lib/Database')
+    , streamController = require('./../lib/StreamController')
+;
 
 exports.form = function(req, res) {
     /*res.write(
@@ -12,20 +14,46 @@ exports.form = function(req, res) {
 }
 
 exports.post = function(req, res) {
+    if(!res.iosession.hasSession()) {
+        req.flash('error', 'not authenticated');
+        res.redirect('/');
+        return;
+    }
+
+    function sendAnswer() {
+        if(req.param('uploadType') == 'inline') {
+            res.redirect('/');
+        } else {
+            res.render('upload');
+        }
+    }
 
     var isValidImage = isImage(req.files.image.name);
 
     if(isValidImage) {
-        db.uploadFile(req.files.image.path).then(function() {
+        db.uploadFile(req.files.image.path).then(function(file) {
             req.flash('success', 'Upload successful!');
-            res.render('upload');
+
+            // image is now in database, create a new entry
+            streamController.post(res.iosession.getUser(), file._id, 'Lorem ipsum').then(function() {
+                // everthing ok
+                req.flash('success', 'File uploaded');
+                sendAnswer();
+                return;
+            }).fail(function(err) {
+                req.flash('error', 'Creating a post failed');
+                sendAnswer();
+                return;
+            });
         }).fail(function(err) {
-            req.flash('error', 'Upload failed! Please try again!');
-            res.render('upload');
+            req.flash('error', 'Uploading failed. Please try again!');
+            sendAnswer();
+            return;
         })
     } else {
         req.flash('error', 'Invalid image! (Accepted filetypes: jpg|jpeg|gif|png|bmp)');
-        res.render('upload');
+        sendAnswer();
+        return;
     }
 };
 

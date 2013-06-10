@@ -1,8 +1,31 @@
 extends layout
+block vars
+    - var title = 'myStream'
 block content
     div.row
         div.span3
+            // Upload
+            h3 Upload a new picture
+            form(method="post", enctype="multipart/form-data", action="/upload" )
+                input(type="file", name="image", accept="image/*")
+                input.btn(type="submit", value="Upload")
+                input(type="hidden", name="uploadType", value="inline")
         div.span9
+            - var stream = iosession.getUser().stream;
+            - if (!stream) {
+                p No stream yet. Upload a photo
+            - } else {
+                h1= stream.name
 
-            for picture in iosession.getUser().stream.entries
-                img(src="/i/#{picture.image}")
+                - var entries = stream.entires;
+                - if (!entries) {
+                    p No entries yet
+                - } else {
+                    for entry in entires
+                        div.post(id=entry._id)
+                            div.content
+                                img(src="/i/#{entry.image}")
+                                p= entry.text
+                                p created: #{entry.created}
+                - }
+            - }

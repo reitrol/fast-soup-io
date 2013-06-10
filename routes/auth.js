@@ -49,11 +49,11 @@ exports.login = function(req, res) {
     var pwd  = req.param('password');
 
     res.iosession.authUser(mail, pwd, function(user) {
-	req.flash('success', "Login successful!");
+	    req.flash('success', "Login successful!");
         res.redirect('/');
     }, function(err) {
-	req.flash('error', "Login failed. Please try again!");
-	res.render('index');
+        req.flash('error', "Login failed. Please try again!");
+        res.render('index');
     });
 };
 exports.logout = function(req, res) {
