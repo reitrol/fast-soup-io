@@ -1,17 +1,10 @@
 
 var db = require('./../lib/Database');
-/*
- * GET home page.
- */
 
 exports.index = function(req, res){
-  /*req.flash('info', 'Test');
-    req.flash('info', 'Test');
-    req.flash('success', 'Test');
-    req.flash('error', 'Test');                   */
     if(res.iosession.hasSession()) {
         // user is logged in
-        res.render('mystream');
+        res.redirect('mystream');
     } else {
         res.render('index');
     }
@@ -23,15 +16,21 @@ exports.image = function(req, res){
 }
 
 exports.listImages = function(req, res) {
-    var pictures = db.listFiles();
-    res.send(pictures);
-}
+    db.listFiles.then(function(pictures) {
+        res.send(pictures);
+    }).fail(function(err) {
+        res.render('error', {error: err});
+    });
 
-exports.uploadSun = function(req,res ) {
-    db.uploadSun();
-    res.send("done");
+
 }
 
 exports.mystream = function(req,res ) {
-    res.render('mystream', {title: 'mystream'});
+    res.iosession.getUser().then(function(user) {
+        return db.populateStream(stream);
+    }).then(function(stream) {
+        res.render('mystream', {stream: stream});
+    }).fail(function(err) {
+        res.render('error', {error: err});
+    });
 }

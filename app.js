@@ -49,10 +49,8 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.pictures);
 app.get('/i/:id', routes.image);
 app.get('/i', routes.listImages);
-app.get('/i_upload', routes.uploadSun);
 app.get('/register', auth.register);
 app.get('/about', auth.about);
 app.get('/mystream', routes.mystream);
