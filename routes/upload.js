@@ -13,23 +13,24 @@ exports.post = function(req, res) {
         return;
     }
 
-    function sendAnswer() {
-
-    }
-
     var isValidImage = isImage(req.files.image.name);
-
+    var file;
     if(isValidImage) {
-        db.uploadFile(req.files.image.path).then(function(file) {
+        db.uploadFile(req.files.image.path).then(function(fileObj) {
             // fetch user
+            file = fileObj;
             return res.iosession.getUser();
         }).then(function(user) {
             // image is now in database, create a new entry
+            console.log("inserting new post");
             return streamController.post(user, file._id, 'Lorem ipsum');
         }).then(function() {
             // everthing ok
             req.flash('success', 'Upload successful!');
+            res.redirect('mystream');
         }).fail(function(err) {
+            req.flash('error', "Upload failed");
+            console.log(err);
             if(req.param('uploadType') == 'inline') {
                 res.redirect('/');
             } else {

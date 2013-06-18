@@ -3,25 +3,23 @@ block vars
     - var title = 'myStream'
 block content
     div.row
-        div.span3
-            // Upload
+        //div.span3
+            Upload
             h3 Upload a new picture
             form(method="post", enctype="multipart/form-data", action="/upload" )
                 input(type="file", name="image", accept="image/*")
                 input.btn(type="submit", value="Upload")
                 input(type="hidden", name="uploadType", value="inline")
         div.span9
-            - var stream = iosession.getUser().stream;
             - if (!stream) {
                 p No stream yet. Upload a photo
             - } else {
                 h1= stream.name
 
-                - var entries = stream.entires;
-                - if (!entries) {
+                - if (!stream.entries) {
                     p No entries yet
                 - } else {
-                    for entry in entires
+                    for entry in stream.entries
                         div.post(id=entry._id)
                             div.content
                                 img(src="/i/#{entry.image}")
