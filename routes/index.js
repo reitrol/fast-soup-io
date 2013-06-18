@@ -1,5 +1,6 @@
 
 var db = require('./../lib/Database'),
+    streamController = require('./../lib/StreamController'),
     Q = require('q');
 
 exports.index = function(req, res){
@@ -48,5 +49,25 @@ exports.mystream = function(req,res ) {
         console.log(err);
         //res.render('error', {error: err});
         res.render('index');
+    });
+}
+
+exports.showStream = function(req, res) {
+    var reqUser = req.params.userStream;
+    db.getForeignStreamOfUser(reqUser).then(function(stream) {
+        res.render('stream', {stream: stream});
+    }).fail(function(err) {
+        res.render('error', {msg: "stream gibts net"});
+    });
+}
+exports.repost = function(req, res) {
+    var postId = req.params.postId;
+    res.iosession.getUser().then(function(user) {
+        return streamController.repost(user, postId, "lorem ipsum");
+    }).then(function() {
+        res.redirect('mystream');
+    }).fail(function(err) {
+        console.log("Error while reposting: " + err);
+        res.render('error', {msg: "repost failed"});
     });
 }

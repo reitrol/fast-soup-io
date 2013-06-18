@@ -1,0 +1,13 @@
+extends layout
+block vars
+    - var title = 'stream'
+block content
+    div.span9
+        h1= stream.name
+        for entry in stream.entries
+            div.post(id=entry._id)
+                div.content
+                    img(src="/i/#{entry.image}")
+                    p= entry.text
+                    p created: #{entry.created}
+                    a(href="/repost/#{entry._id}") Repost

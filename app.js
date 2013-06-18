@@ -54,6 +54,8 @@ app.get('/i', routes.listImages);
 app.get('/register', auth.register);
 app.get('/about', auth.about);
 app.get('/mystream', routes.mystream);
+app.get('/stream/:userStream', routes.showStream);
+app.get('/repost/:postId', routes.repost);
 app.get('/profile', user.profile);
 app.get('/logout', auth.logout);
 
@@ -69,3 +71,4 @@ app.post('/upload', upload.post);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+                                             ;
