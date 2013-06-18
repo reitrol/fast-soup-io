@@ -47,7 +47,6 @@ exports.mystream = function(req,res ) {
         res.render('mystream', {stream: stream});
     }).fail(function(err) {
         console.log(err);
-        //res.render('error', {error: err});
         res.render('index');
     });
 }

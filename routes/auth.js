@@ -20,7 +20,7 @@ exports.registerSubmit = function(req, res){
         return;
     }
     db.newUser(mail, pwd).then(function(user){
-        //return email.sendValidationMail(user); // TODO: Currently not working
+        return email.sendValidationMail(user);
     }).then(function() {
         req.flash('success', "Thank you for your registration! \n" +
             "An email has been sent to your registered email address!");
@@ -58,7 +58,5 @@ exports.login = function(req, res) {
 };
 exports.logout = function(req, res) {
     res.iosession.logout();
-    // ab hier kein layout mehr rendern, da flash nicht mehr verfuegbar ist
-    //res.render('logout');
     res.redirect('/');
 };
